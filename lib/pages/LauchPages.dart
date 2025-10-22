@@ -1,148 +1,109 @@
 import 'package:flutter/material.dart';
 
 class LaunchPages extends StatelessWidget {
+  const LaunchPages({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: 430,
-          height: 932,
-          clipBehavior: Clip.antiAlias,
-          decoration: ShapeDecoration(
-            color: const Color(0xC4D6E7FF),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(40),
-            ),
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    final cardWidth = screenWidth < 500 ? screenWidth * 0.9 : 430.0;
+
+    return Center(
+      child: Container(
+        width: cardWidth,
+        height: cardWidth * 2.17, // 932 / 430 ≈ 2.17
+        decoration: ShapeDecoration(
+          color: const Color(0xC4D6E7FF),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(40),
           ),
-          child: Stack(
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Positioned(
-                left: 99,
-                top: 401,
-                child: Text(
-                  'BookHall',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: const Color(
-                      0xFF0088FF,
-                    ) /* Miscellaneous-Tab-Bar-Selection-√ */,
-                    fontSize: 52.14,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w600,
-                    height: 1.10,
-                  ),
+              // Title
+              Text(
+                'BookHall',
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Color(0xFF0088FF),
+                  fontSize: 52.14,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                  height: 1.10,
                 ),
               ),
-              Positioned(
-                left: 96,
-                top: 462,
-                child: SizedBox(
-                  width: 236,
-                  child: Text(
-                    'Cepat dan mudah dalam pemesanan gedung untuk acaramu',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: const Color(0xFF4B4544),
-                      fontSize: 14,
-                      fontFamily: 'League Spartan',
-                      fontWeight: FontWeight.w400,
+              const SizedBox(height: 16),
+
+              // Subtitle – wrapped so it never overflows
+              Text(
+                'Cepat dan mudah dalam pemesanan gedung untuk acara‑mu',
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Color(0xFF4B4544),
+                  fontSize: 14,
+                  fontFamily: 'League Spartan',
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              const SizedBox(height: 48),
+
+              // “Log In” button – full‑width, rounded, solid
+              SizedBox(
+                width: double.infinity,
+                height: 45,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF0088FF),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    textStyle: const TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w600,
+                      fontSize: 20,
+                      height: 1.10,
                     ),
                   ),
+                  onPressed: () {
+                    // TODO: Navigate to login screen
+                  },
+                  child: const Text('Log In'),
                 ),
               ),
-              Positioned(
-                left: 112,
-                top: 530,
-                child: Container(
-                  width: 207,
-                  height: 45,
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 0,
-                        top: 0,
-                        child: Container(
-                          width: 207,
-                          height: 45,
-                          decoration: ShapeDecoration(
-                            color: const Color(0xFF0088FF),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        left: -7,
-                        top: 11,
-                        child: SizedBox(
-                          width: 220,
-                          child: Text(
-                            'Log In',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: const Color(0xFF093030),
-                              fontSize: 20,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w600,
-                              height: 1.10,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+              const SizedBox(height: 16),
+
+              // “Sign Up” button – subtle background, outline
+              SizedBox(
+                width: double.infinity,
+                height: 45,
+                child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: const Color(0xFFDFF7E2),
+                    side: const BorderSide(color: Colors.transparent),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    textStyle: const TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w600,
+                      fontSize: 20,
+                      height: 1.10,
+                    ),
                   ),
-                ),
-              ),
-              Positioned(
-                left: 112,
-                top: 587,
-                child: Container(
-                  width: 207,
-                  height: 45,
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 0,
-                        top: 0,
-                        child: Container(
-                          width: 207,
-                          height: 45,
-                          decoration: ShapeDecoration(
-                            color: const Color(0xFFDFF7E2),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        left: -1,
-                        top: 11,
-                        child: SizedBox(
-                          width: 208,
-                          child: Text(
-                            'Sign Up',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: const Color(0xFF0E3E3E),
-                              fontSize: 20,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w600,
-                              height: 1.10,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  onPressed: () {
+                    // TODO: Navigate to sign‑up screen
+                  },
+                  child: const Text('Sign Up'),
                 ),
               ),
             ],
           ),
         ),
-      ],
+      ),
     );
   }
 }
