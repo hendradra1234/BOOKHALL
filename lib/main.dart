@@ -1,6 +1,7 @@
 import 'package:bookhall/pages/Dashboard.dart';
 import 'package:bookhall/pages/LauchPages.dart';
 import 'package:bookhall/pages/LoginPages.dart';
+import 'package:bookhall/pages/NavigationPage.dart';
 import 'package:bookhall/pages/SettingPages.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: LoginPage()
+      home: NavigationPage()
     );
   }
 }

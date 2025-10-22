@@ -1,302 +1,190 @@
 import 'package:flutter/material.dart';
 
-class NavigasiPage extends StatelessWidget {
+class NavigationPage extends StatelessWidget {
+  const NavigationPage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: 430,
-          height: 932,
-          clipBehavior: Clip.antiAlias,
-          decoration: ShapeDecoration(
-            color: const Color(0xFF2C6EC4),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(40),
-            ),
-          ),
-          child: Stack(
-            children: [
-              Positioned(
-                left: 152,
-                top: 60,
-                child: SizedBox(
-                  width: 124,
-                  height: 33,
+    // Screen width/height for responsive spacing
+    final w = MediaQuery.of(context).size.width;
+    final h = MediaQuery.of(context).size.height;
+
+    // Width we use for the “main” card area – shrink it on very small phones
+    final cardWidth = w < 430 ? w * 0.95 : 430.0;
+
+    return Scaffold(
+      backgroundColor: const Color(0xFF2C6EC4),
+      body: SafeArea(
+        child: Center(
+          // When the device is too short the page scrolls.
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 12),
                   child: Text(
-                    'BOOKHALL',
-                    textAlign: TextAlign.center,
+                    '16:04',
                     style: TextStyle(
-                      color: const Color(
-                        0xFFFEBC2F,
-                      ) /* Miscellaneous-Window-Controls-Minimize */,
-                      fontSize: 20,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w600,
-                      height: 1.10,
+                      color: Colors.white,
+                      fontSize: 13,
+                      fontFamily: 'League Spartan',
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
-              ),
-              Positioned(
-                left: 103,
-                top: 87,
-                child: SizedBox(
-                  width: 224,
-                  height: 33,
-                  child: Text(
-                    'SELAMAT DATANG, Mr.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color:
-                          Colors
-                              .white /* Miscellaneous-Sidebar-Fill---Selected */,
-                      fontSize: 20,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w600,
-                      height: 1.10,
-                    ),
+
+                const Text(
+                  'BOOKHALL',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xFFFEBC2F),
+                    fontSize: 20,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w600,
+                    height: 1.10,
                   ),
                 ),
-              ),
-              Positioned(
-                left: 0,
-                top: 0,
-                child: Container(
-                  width: 430,
-                  height: 32,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 37,
-                        top: 9,
-                        child: SizedBox(
-                          width: 30,
-                          height: 14,
-                          child: Text(
-                            '16:04',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 13,
-                              fontFamily: 'League Spartan',
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                const SizedBox(height: 8),
+                const Text(
+                  'SELAMAT DATANG, Mr.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w600,
+                    height: 1.10,
                   ),
                 ),
-              ),
-              Positioned(
-                left: 364,
-                top: 61,
-                child: Container(
-                  width: 30,
-                  height: 30,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: ShapeDecoration(
-                    color: const Color(
-                      0xFFD9D9D9,
-                    ) /* Labels---Vibrant---Controls-Tertiary-√ */,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25.71),
-                    ),
-                  ),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 7.71,
-                        top: 5.14,
-                        child: Container(
-                          width: 14.57,
-                          height: 18.86,
-                          child: Stack(),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 5,
-                top: 821,
-                child: Container(
-                  width: 409,
-                  height: 111,
-                  padding: const EdgeInsets.only(
-                    top: 36,
-                    left: 60,
-                    right: 60,
-                    bottom: 41,
-                  ),
-                  clipBehavior: Clip.antiAlias,
-                  decoration: ShapeDecoration(
+
+                const SizedBox(height: 40),
+                Container(
+                  width: cardWidth,
+                  // Height matches the original 360 + 75 + 75 + 48 = 498
+                  // we let the internal children dictate the height
+                  padding: const EdgeInsets.only(top: 30, bottom: 20),
+                  decoration: BoxDecoration(
                     color: const Color(0xFFDFE3F7),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(70),
-                        topRight: Radius.circular(70),
-                      ),
-                    ),
+                    borderRadius: BorderRadius.circular(40),
                   ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    spacing: 43,
+                  child: Column(
                     children: [
-                      Container(width: 22, height: 27, child: Stack()),
+                      // BOOKING card
+                      _buildCard(title: 'BOOKING', icon: Icons.calendar_today),
+                      const SizedBox(height: 20),
+                      // BUKTI BOOKING card
+                      _buildCard(
+                        title: 'BUKTI BOOKING',
+                        icon: Icons.receipt_long,
+                      ),
                     ],
                   ),
                 ),
-              ),
-              Positioned(
-                left: 40.22,
-                top: 840.53,
-                child: Container(
-                  width: 334.64,
-                  height: 91.47,
-                  padding: const EdgeInsets.all(10),
-                  clipBehavior: Clip.antiAlias,
-                  decoration: ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+
+                const SizedBox(height: 40),
+
+                Container(
+                  width: cardWidth,
+                  height: 111,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 60,
+                    vertical: 36,
+                  ),
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFDFE3F7),
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(70),
                     ),
                   ),
                   child: Wrap(
                     alignment: WrapAlignment.center,
-                    runAlignment: WrapAlignment.center,
-                    spacing: 10,
+                    spacing: 20,
                     runSpacing: 10,
                     children: [
-                      Expanded(
-                        child: Container(
-                          height: double.infinity,
-                          padding: const EdgeInsets.all(8),
-                          decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            spacing: 8,
-                            children: [
-                              Container(
-                                width: 24,
-                                height: 24,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(),
-                                child: Stack(),
-                              ),
-                              Text(
-                                'Account',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: const Color(
-                                    0xFF757575,
-                                  ) /* Text-Default-Secondary */,
-                                  fontSize: 16,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  height: 1,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                      _buildBottomIcon(
+                        icon: Icons.account_circle,
+                        label: 'Account',
                       ),
+                      _buildBottomIcon(icon: Icons.settings, label: 'Settings'),
+                      _buildBottomIcon(icon: Icons.logout, label: 'Logout'),
                     ],
                   ),
                 ),
-              ),
-              Positioned(
-                left: 34,
-                top: 277,
-                child: Container(
-                  width: 360,
-                  height: 75,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xFFD1DDF0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(39),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 81,
-                top: 302,
-                child: Text(
-                  'BOOKING',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 28,
-                    fontFamily: 'League Spartan',
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 339,
-                top: 290,
-                child: Container(
-                  width: 48,
-                  height: 48,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(),
-                  child: Stack(),
-                ),
-              ),
-              Positioned(
-                left: 36,
-                top: 380,
-                child: Container(
-                  width: 360,
-                  height: 75,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xFFD1DDF0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(39),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 82,
-                top: 405,
-                child: Text(
-                  'BUKTI BOOKING',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 28,
-                    fontFamily: 'League Spartan',
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 341,
-                top: 393,
-                child: Container(
-                  width: 48,
-                  height: 48,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(),
-                  child: Stack(),
+
+                const SizedBox(height: 20),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// Reusable card widget for “BOOKING” / “BUKTI BOOKING”
+  Widget _buildCard({required String title, required IconData icon}) {
+    return SizedBox(
+      width: double.infinity,
+      height: 75,
+      child: Card(
+        color: const Color(0xFFD1DDF0),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(39)),
+        elevation: 2,
+        child: InkWell(
+          onTap: () {
+            // TODO: add your navigation logic
+          },
+          borderRadius: BorderRadius.circular(39),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, size: 30, color: Colors.black87),
+              const SizedBox(width: 12),
+              Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 28,
+                  fontFamily: 'League Spartan',
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ],
           ),
         ),
-      ],
+      ),
+    );
+  }
+
+  /// Reusable icon + label for the bottom bar
+  Widget _buildBottomIcon({required IconData icon, required String label}) {
+    return SizedBox(
+      width: 70,
+      height: 70,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              color: const Color(0xFFD1DDF0),
+              borderRadius: BorderRadius.circular(24),
+            ),
+            child: Icon(icon, color: Colors.black87),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Color(0xFF757575),
+              fontSize: 12,
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
