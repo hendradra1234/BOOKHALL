@@ -1,342 +1,341 @@
 import 'package:flutter/material.dart';
 
-class CreateAccount extends StatelessWidget {
+class CreateAccount extends StatefulWidget {
+  static const String route = '/registerAccount';
+  const CreateAccount({super.key});
+
+  @override
+  State<CreateAccount> createState() => _CreateAccountState();
+}
+
+class _CreateAccountState extends State<CreateAccount> {
+  final _formKey = GlobalKey<FormState>();
+
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _mobileController = TextEditingController();
+  final _dobController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _mobileController.dispose();
+    _dobController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  /// Simple validation logic – adjust as needed
+  bool _validateForm() {
+    if (!_formKey.currentState!.validate()) return false;
+    if (_passwordController.text != _confirmPasswordController.text) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Passwords do not match')));
+      return false;
+    }
+    return true;
+  }
+
+  void _onSignUp() {
+    if (_validateForm()) {
+      // TODO: call your sign‑up logic / API
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Signed up successfully!')));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: 430,
-          height: 932,
-          clipBehavior: Clip.antiAlias,
-          decoration: ShapeDecoration(
-            color: const Color(0xFF2C6EC4),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(40),
-            ),
-          ),
-          child: Stack(
-            children: [
-              Positioned(
-                left: 37,
-                top: 573,
-                child: Container(
-                  width: 357,
-                  height: 41,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xFFDFE3F7),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
-                    ),
-                  ),
-                ),
+    // Use the device's width; keep some horizontal padding
+    final width = MediaQuery.of(context).size.width * 0.9;
+
+    return Scaffold(
+      backgroundColor: const Color(0xFF2C6EC4), // same background as before
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24.0,
+                vertical: 20.0,
               ),
-              Positioned(
-                left: 37,
-                top: 656,
-                child: Container(
-                  width: 357,
-                  height: 41,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xFFDFE3F7),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
-                    ),
-                  ),
+              child: Container(
+                width: width,
+                padding: const EdgeInsets.all(24.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(40),
                 ),
-              ),
-              Positioned(
-                left: 95,
-                top: 100,
-                child: Text(
-                  'Create Account',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w600,
-                    height: 0.73,
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 0,
-                top: 0,
-                child: Container(
-                  width: 430,
-                  height: 32,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(),
-                  child: Stack(
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Positioned(
-                        left: 37,
-                        top: 9,
-                        child: SizedBox(
-                          width: 30,
-                          height: 14,
-                          child: Text(
-                            '16:04',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 13,
-                              fontFamily: 'League Spartan',
-                              fontWeight: FontWeight.w500,
-                            ),
+                      // Page title
+                      Center(
+                        child: Text(
+                          'Create Account',
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w600,
+                            color: const Color(0xFF2C6EC4),
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 37,
-                top: 240,
-                child: Container(
-                  width: 357,
-                  height: 41,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xFFDFE3F7),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 37,
-                top: 323,
-                child: Container(
-                  width: 357,
-                  height: 41,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xFFDFE3F7),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 37,
-                top: 406,
-                child: Container(
-                  width: 357,
-                  height: 41,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xFFDFE3F7),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 37,
-                top: 490,
-                child: Container(
-                  width: 357,
-                  height: 41,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xFFDFE3F7),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 72,
-                top: 331,
-                child: SizedBox(
-                  width: 293,
-                  child: Opacity(
-                    opacity: 0.45,
-                    child: Text(
-                      'example@example.com',
-                      style: TextStyle(
-                        color: const Color(0xFF0E3E3E),
-                        fontSize: 16,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w500,
+                      const SizedBox(height: 32),
+
+                      // Full name
+                      const Text(
+                        'Full name',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF363130),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 73,
-                top: 414,
-                child: SizedBox(
-                  width: 293,
-                  child: Opacity(
-                    opacity: 0.45,
-                    child: Text(
-                      '+ 123 456 789',
-                      style: TextStyle(
-                        color: const Color(0xFF0E3E3E),
-                        fontSize: 16,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w500,
+                      const SizedBox(height: 8),
+                      TextFormField(
+                        controller: _nameController,
+                        decoration: InputDecoration(
+                          hintText: 'Your full name',
+                          filled: true,
+                          fillColor: const Color(0xFFDFE3F7),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                        validator:
+                            (v) =>
+                                v!.isEmpty
+                                    ? 'Please enter your full name'
+                                    : null,
                       ),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 73,
-                top: 498,
-                child: SizedBox(
-                  width: 293,
-                  child: Opacity(
-                    opacity: 0.45,
-                    child: Text(
-                      'DD / MM /YYY',
-                      style: TextStyle(
-                        color: const Color(0xFF0E3E3E),
-                        fontSize: 16,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w500,
+                      const SizedBox(height: 16),
+
+                      // Email
+                      const Text(
+                        'Email',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF363130),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 72,
-                top: 248,
-                child: SizedBox(
-                  width: 293,
-                  child: Opacity(
-                    opacity: 0.45,
-                    child: Text(
-                      'example@example.com',
-                      style: TextStyle(
-                        color: const Color(0xFF0E3E3E),
-                        fontSize: 16,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w500,
+                      const SizedBox(height: 8),
+                      TextFormField(
+                        controller: _emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          hintText: 'example@example.com',
+                          filled: true,
+                          fillColor: const Color(0xFFDFE3F7),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                        validator: (v) {
+                          if (v!.isEmpty) return 'Enter your email';
+                          if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(v))
+                            return 'Enter a valid email';
+                          return null;
+                        },
                       ),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 55,
-                top: 214,
-                child: Text(
-                  'Full name',
-                  style: TextStyle(
-                    color: const Color(0xFF363130),
-                    fontSize: 15,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 55,
-                top: 297,
-                child: Text(
-                  'Email',
-                  style: TextStyle(
-                    color: const Color(0xFF363130),
-                    fontSize: 15,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 55,
-                top: 380,
-                child: Text(
-                  'Mobile Number',
-                  style: TextStyle(
-                    color: const Color(0xFF363130),
-                    fontSize: 15,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 55,
-                top: 464,
-                child: Text(
-                  'Date of birth',
-                  style: TextStyle(
-                    color: const Color(0xFF363130),
-                    fontSize: 15,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 55,
-                top: 547,
-                child: Text(
-                  'Password',
-                  style: TextStyle(
-                    color: const Color(0xFF363130),
-                    fontSize: 15,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 55,
-                top: 630,
-                child: Text(
-                  'Confirm Password',
-                  style: TextStyle(
-                    color: const Color(0xFF363130),
-                    fontSize: 15,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 116,
-                top: 766,
-                child: Container(
-                  width: 207,
-                  height: 45,
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 0,
-                        top: 0,
-                        child: Container(
-                          width: 207,
-                          height: 45,
-                          decoration: ShapeDecoration(
-                            color: const Color(0xFF0088FF),
+                      const SizedBox(height: 16),
+
+                      // Mobile Number
+                      const Text(
+                        'Mobile Number',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF363130),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      TextFormField(
+                        controller: _mobileController,
+                        keyboardType: TextInputType.phone,
+                        decoration: InputDecoration(
+                          hintText: '+ 123 456 789',
+                          filled: true,
+                          fillColor: const Color(0xFFDFE3F7),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                        validator:
+                            (v) =>
+                                v!.isEmpty ? 'Enter your phone number' : null,
+                      ),
+                      const SizedBox(height: 16),
+
+                      // Date of birth
+                      const Text(
+                        'Date of birth',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF363130),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      TextFormField(
+                        controller: _dobController,
+                        keyboardType: TextInputType.datetime,
+                        decoration: InputDecoration(
+                          hintText: 'DD / MM / YYYY',
+                          filled: true,
+                          fillColor: const Color(0xFFDFE3F7),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                        validator: (v) => v!.isEmpty ? 'Enter your DOB' : null,
+                      ),
+                      const SizedBox(height: 16),
+
+                      // Password
+                      const Text(
+                        'Password',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF363130),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      TextFormField(
+                        controller: _passwordController,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          hintText: '●●●●●●●●',
+                          filled: true,
+                          fillColor: const Color(0xFFDFE3F7),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                        validator:
+                            (v) =>
+                                v!.length < 6
+                                    ? 'Password must be at least 6 chars'
+                                    : null,
+                      ),
+                      const SizedBox(height: 16),
+
+                      // Confirm password
+                      const Text(
+                        'Confirm Password',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF363130),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      TextFormField(
+                        controller: _confirmPasswordController,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          hintText: '●●●●●●●●',
+                          filled: true,
+                          fillColor: const Color(0xFFDFE3F7),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                        validator:
+                            (v) => v!.isEmpty ? 'Confirm your password' : null,
+                      ),
+                      const SizedBox(height: 32),
+
+                      // Sign up button
+                      SizedBox(
+                        width: double.infinity,
+                        height: 45,
+                        child: ElevatedButton(
+                          onPressed: _onSignUp,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF0088FF),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
                           ),
-                        ),
-                      ),
-                      Positioned(
-                        left: -7,
-                        top: 11,
-                        child: SizedBox(
-                          width: 220,
-                          child: Text(
+                          child: const Text(
                             'Sign Up',
-                            textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: const Color(0xFF093030),
+                              color: Color(0xFF093030),
                               fontSize: 20,
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.w600,
-                              height: 1.10,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+
+                      // Terms & privacy
+                      Center(
+                        child: Text(
+                          'By continuing, you agree to Terms of Use and Privacy Policy.',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontFamily: 'League Spartan',
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xFF4B4544),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+
+                      // Already have an account? Log in
+                      Center(
+                        child: GestureDetector(
+                          onTap: () {
+                            // TODO: navigate to login page
+                          },
+                          child: Text.rich(
+                            TextSpan(
+                              children: [
+                                const TextSpan(
+                                  text: 'Already have an account?  ',
+                                  style: TextStyle(
+                                    color: Color(0xFF093030),
+                                    fontSize: 13,
+                                    fontFamily: 'League Spartan',
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                ),
+                                const TextSpan(
+                                  text: 'Log In',
+                                  style: TextStyle(
+                                    color: Color(0xFF3299FF),
+                                    fontSize: 13,
+                                    fontFamily: 'League Spartan',
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -345,156 +344,10 @@ class CreateAccount extends StatelessWidget {
                   ),
                 ),
               ),
-              Positioned(
-                left: 79,
-                top: 822,
-                child: SizedBox(
-                  width: 273,
-                  height: 28,
-                  child: Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: 'Already have an account?  ',
-                          style: TextStyle(
-                            color: const Color(0xFF093030),
-                            fontSize: 13,
-                            fontFamily: 'League Spartan',
-                            fontWeight: FontWeight.w300,
-                            height: 1.15,
-                          ),
-                        ),
-                        TextSpan(
-                          text: 'Log In',
-                          style: TextStyle(
-                            color: const Color(0xFF3299FF),
-                            fontSize: 13,
-                            fontFamily: 'League Spartan',
-                            fontWeight: FontWeight.w300,
-                            height: 1.15,
-                          ),
-                        ),
-                      ],
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 79,
-                top: 725,
-                child: SizedBox(
-                  width: 273,
-                  height: 28,
-                  child: Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: 'By continuing, you agree to \n',
-                          style: TextStyle(
-                            color: const Color(0xFF4B4544),
-                            fontSize: 14,
-                            fontFamily: 'League Spartan',
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        TextSpan(
-                          text: ' Terms of Use',
-                          style: TextStyle(
-                            color: const Color(0xFF4B4544),
-                            fontSize: 14,
-                            fontFamily: 'League Spartan',
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        TextSpan(
-                          text: ' and ',
-                          style: TextStyle(
-                            color: const Color(0xFF4B4544),
-                            fontSize: 14,
-                            fontFamily: 'League Spartan',
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        TextSpan(
-                          text: 'Privacy Policy.',
-                          style: TextStyle(
-                            color: const Color(0xFF4B4544),
-                            fontSize: 14,
-                            fontFamily: 'League Spartan',
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 354,
-                top: 590,
-                child: Container(
-                  width: 24.14,
-                  height: 9,
-                  child: Stack(),
-                ),
-              ),
-              Positioned(
-                left: 352,
-                top: 672,
-                child: Container(
-                  width: 24.14,
-                  height: 9,
-                  child: Stack(),
-                ),
-              ),
-              Positioned(
-                left: 73,
-                top: 588,
-                child: SizedBox(
-                  width: 177,
-                  child: Opacity(
-                    opacity: 0.45,
-                    child: Text(
-                      '●●●●●●●●',
-                      style: TextStyle(
-                        color: const Color(0xFF0E3E3E),
-                        fontSize: 12,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w400,
-                        height: 1.17,
-                        letterSpacing: 8.40,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 73,
-                top: 671,
-                child: SizedBox(
-                  width: 177,
-                  child: Opacity(
-                    opacity: 0.45,
-                    child: Text(
-                      '●●●●●●●●',
-                      style: TextStyle(
-                        color: const Color(0xFF0E3E3E),
-                        fontSize: 12,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w400,
-                        height: 1.17,
-                        letterSpacing: 8.40,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
-      ],
+      ),
     );
   }
 }

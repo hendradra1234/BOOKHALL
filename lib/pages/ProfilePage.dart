@@ -1,1232 +1,242 @@
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
+  static const String route = '/profilepages';
+  const ProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: 430,
-          height: 932,
-          clipBehavior: Clip.antiAlias,
-          decoration: ShapeDecoration(
-            color: const Color(0xFF2C6EC4),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(40),
+    final screenW = MediaQuery.of(context).size.width;
+    final cardWidth = screenW < 430 ? screenW * 0.95 : 430.0;
+
+    return Scaffold(
+      backgroundColor: const Color(0xFF2C6EC4),
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Column(
+              children: [
+                _buildTopBar(),
+
+                const SizedBox(height: 20),
+                _buildAvatarSection(),
+
+                const SizedBox(height: 40),
+                _buildInfoCard(cardWidth),
+
+                const SizedBox(height: 40),
+                _buildBottomNav(cardWidth),
+              ],
             ),
           ),
-          child: Stack(
-            children: [
-              Positioned(
-                left: 152,
-                top: 60,
-                child: SizedBox(
-                  width: 124,
-                  height: 33,
-                  child: Text(
-                    'BOOKHALL',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: const Color(
-                        0xFFFEBC2F,
-                      ) /* Miscellaneous-Window-Controls-Minimize */,
-                      fontSize: 20,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w600,
-                      height: 1.10,
-                    ),
-                  ),
-                ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTopBar() => Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 24),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        // Clock (mocked)
+        const Text(
+          '16:04',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 13,
+            fontFamily: 'League Spartan',
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        // Title
+        const Text(
+          'BOOKHALL',
+          style: TextStyle(
+            color: Color(0xFFFEBC2F),
+            fontSize: 20,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w600,
+            height: 1.10,
+          ),
+        ),
+        // Dummy right‑side icon
+        const Icon(Icons.more_vert, color: Colors.white, size: 24),
+      ],
+    ),
+  );
+
+  Widget _buildAvatarSection() => Column(
+    children: [
+      const CircleAvatar(
+        radius: 57.5,
+        backgroundColor: Color(0xFF2C2C2C),
+        child: Text(
+          'NM',
+          style: TextStyle(
+            color: Color(0xFFF5F5F5),
+            fontSize: 20,
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w400,
+            height: 1.20,
+          ),
+        ),
+      ),
+      const SizedBox(height: 12),
+      const Text(
+        'Nama',
+        style: TextStyle(
+          color: Color(0xFF141414),
+          fontSize: 20,
+          fontFamily: 'Poppins',
+          fontWeight: FontWeight.w600,
+          height: 1.10,
+        ),
+      ),
+    ],
+  );
+
+  Widget _buildInfoCard(double width) => Card(
+    color: const Color(0xFFDFE3F7),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(70)),
+    child: Padding(
+      padding: const EdgeInsets.all(30),
+      child: Column(
+        children: [
+          // Header “PROFILE”
+          const Text(
+            'PROFILE',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w600,
+              height: 1.10,
+            ),
+          ),
+          const SizedBox(height: 24),
+
+          // Fields
+          _buildField(label: 'USERNAME', value: 'Nama'),
+          const SizedBox(height: 16),
+          _buildField(label: 'PHONE', value: '+62129392939'),
+          const SizedBox(height: 16),
+          _buildField(label: 'EMAIL', value: 'usrsystem@gmail.com'),
+          const SizedBox(height: 16),
+          _buildField(
+            label: 'ADDRESS',
+            value: 'Alamat Penguna',
+            multiline: true,
+          ),
+        ],
+      ),
+    ),
+  );
+
+  /* --------------------------------------------------------------------- */
+  /// One read‑only text field with a label on top
+  /* --------------------------------------------------------------------- */
+  Widget _buildField({
+    required String label,
+    required String value,
+    bool multiline = false,
+  }) {
+    final fieldHeight = multiline ? 80.0 : 49.0;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Label
+        Padding(
+          padding: const EdgeInsets.only(left: 16, bottom: 4),
+          child: Text(
+            label,
+            style: const TextStyle(
+              color: Color(0xFF404040),
+              fontSize: 17,
+              fontFamily: 'SF Pro',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+        // Text field
+        SizedBox(
+          height: fieldHeight,
+          child: TextFormField(
+            initialValue: value,
+            readOnly: true,
+            maxLines: multiline ? null : 1,
+            style: const TextStyle(
+              color: Colors.black,
+              fontSize: 17,
+              fontFamily: 'SF Pro',
+              fontWeight: FontWeight.w500,
+            ),
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 12,
               ),
-              Positioned(
-                left: 103,
-                top: 87,
-                child: SizedBox(
-                  width: 224,
-                  height: 33,
-                  child: Text(
-                    'PROFILE',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color:
-                          Colors
-                              .white /* Miscellaneous-Sidebar-Fill---Selected */,
-                      fontSize: 20,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w600,
-                      height: 1.10,
-                    ),
-                  ),
-                ),
+              filled: true,
+              fillColor: Colors.white,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: const BorderSide(color: Color(0xFFE6E6E6)),
               ),
-              Positioned(
-                left: 38,
-                top: 69,
-                child: Container(width: 19, height: 16, child: Stack()),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: const BorderSide(color: Color(0xFF0088FF)),
               ),
-              Positioned(
-                left: 0,
-                top: 0,
-                child: Container(
-                  width: 430,
-                  height: 32,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 37,
-                        top: 9,
-                        child: SizedBox(
-                          width: 30,
-                          height: 14,
-                          child: Text(
-                            '16:04',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 13,
-                              fontFamily: 'League Spartan',
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 364,
-                top: 61,
-                child: Container(
-                  width: 30,
-                  height: 30,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: ShapeDecoration(
-                    color: const Color(
-                      0xFFD9D9D9,
-                    ) /* Labels---Vibrant---Controls-Tertiary-√ */,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25.71),
-                    ),
-                  ),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 7.71,
-                        top: 5.14,
-                        child: Container(
-                          width: 14.57,
-                          height: 18.86,
-                          child: Stack(),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 5,
-                top: 821,
-                child: Container(
-                  width: 409,
-                  height: 111,
-                  padding: const EdgeInsets.only(
-                    top: 36,
-                    left: 60,
-                    right: 60,
-                    bottom: 41,
-                  ),
-                  clipBehavior: Clip.antiAlias,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xFFDFE3F7),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(70),
-                        topRight: Radius.circular(70),
-                      ),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    spacing: 43,
-                    children: [
-                      Container(width: 22, height: 27, child: Stack()),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 40.22,
-                top: 840.53,
-                child: Container(
-                  width: 334.64,
-                  height: 91.47,
-                  padding: const EdgeInsets.all(10),
-                  clipBehavior: Clip.antiAlias,
-                  decoration: ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: Wrap(
-                    alignment: WrapAlignment.center,
-                    runAlignment: WrapAlignment.center,
-                    spacing: 10,
-                    runSpacing: 10,
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: double.infinity,
-                          padding: const EdgeInsets.all(8),
-                          decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            spacing: 8,
-                            children: [
-                              Container(
-                                width: 24,
-                                height: 24,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(),
-                                child: Stack(),
-                              ),
-                              Text(
-                                'Home',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: const Color(
-                                    0xFF757575,
-                                  ) /* Text-Default-Secondary */,
-                                  fontSize: 16,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  height: 1,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          height: double.infinity,
-                          padding: const EdgeInsets.all(8),
-                          decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            spacing: 8,
-                            children: [
-                              Container(
-                                width: 24,
-                                height: 24,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(),
-                                child: Stack(),
-                              ),
-                              Text(
-                                'Account',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: const Color(
-                                    0xFF757575,
-                                  ) /* Text-Default-Secondary */,
-                                  fontSize: 16,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  height: 1,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 159,
-                top: 263,
-                child: SizedBox(
-                  width: 107,
-                  height: 38,
-                  child: Text(
-                    'Nama',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: const Color(
-                        0xFF141414,
-                      ) /* Miscellaneous-Keyboards-Keys */,
-                      fontSize: 20,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w600,
-                      height: 1.10,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 158,
-                top: 261,
-                child: SizedBox(
-                  width: 107,
-                  height: 38,
-                  child: Text(
-                    'Nama',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: const Color(
-                        0xFF141414,
-                      ) /* Miscellaneous-Keyboards-Keys */,
-                      fontSize: 20,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w600,
-                      height: 1.10,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 152,
-                top: 148,
-                child: Container(
-                  width: 115,
-                  height: 115,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: ShapeDecoration(
-                    color: const Color(
-                      0xFF2C2C2C,
-                    ) /* Background-Brand-Default */,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(9999),
-                    ),
-                  ),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 41.50,
-                        top: 46,
-                        child: Text(
-                          'NM',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: const Color(
-                              0xFFF5F5F5,
-                            ) /* Text-Brand-On-Brand */,
-                            fontSize: 20,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
-                            height: 1.20,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 35,
-                top: 325,
-                child: Container(
-                  width: 359,
-                  height: 49,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  decoration: ShapeDecoration(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                        width: 1,
-                        strokeAlign: BorderSide.strokeAlignCenter,
-                      ),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: double.infinity,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: double.infinity,
-                                height: 1,
-                                decoration: ShapeDecoration(
-                                  shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                      width: 1,
-                                      strokeAlign:
-                                          BorderSide.strokeAlignOutside,
-                                      color: const Color(
-                                        0xFFE6E6E6,
-                                      ) /* Separators-Vibrant */,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 327,
-                                height: 48,
-                                child: Text(
-                                  'Username',
-                                  style: TextStyle(
-                                    color: Colors.black /* Labels-Primary */,
-                                    fontSize: 17,
-                                    fontFamily: 'SF Pro',
-                                    fontWeight: FontWeight.w500,
-                                    height: 1.18,
-                                    letterSpacing: -0.43,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 51,
-                top: 303,
-                child: Container(
-                  width: 98,
-                  height: 18,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 6,
-                  ),
-                  decoration: ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(1000),
-                    ),
-                  ),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 0,
-                        top: 0,
-                        child: Container(
-                          width: 98,
-                          height: 18,
-                          child: Stack(
-                            children: [
-                              Positioned(
-                                left: -26,
-                                top: -26,
-                                child: Opacity(
-                                  opacity: 0.67,
-                                  child: Container(
-                                    width: 150,
-                                    height: 70,
-                                    child: Stack(
-                                      children: [
-                                        Positioned(
-                                          left: -50,
-                                          top: -50,
-                                          child: Container(
-                                            width: 250,
-                                            height: 170,
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                            ),
-                                            child: Stack(
-                                              children: [
-                                                Positioned(
-                                                  left: 76,
-                                                  top: 76,
-                                                  child: Container(
-                                                    width: 98,
-                                                    height: 18,
-                                                    decoration: ShapeDecoration(
-                                                      color: Colors.black,
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                              1000,
-                                                            ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          left: 26,
-                                          top: 28,
-                                          child: Container(
-                                            width: 98,
-                                            height: 18,
-                                            decoration: ShapeDecoration(
-                                              color: Colors.black.withValues(
-                                                alpha: 0.04,
-                                              ),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(1000),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                left: 0,
-                                top: 0,
-                                child: Container(
-                                  width: 98,
-                                  height: 18,
-                                  decoration: ShapeDecoration(
-                                    color: const Color(0xFFF7F7F7),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(296),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                left: 0,
-                                top: 0,
-                                child: Container(
-                                  width: 98,
-                                  height: 18,
-                                  decoration: ShapeDecoration(
-                                    color: Colors.black.withValues(alpha: 0),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(296),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 36,
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              'USERNAME',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: const Color(
-                                  0xFF404040,
-                                ) /* Labels---Vibrant---Controls-Primary-√ */,
-                                fontSize: 17,
-                                fontFamily: 'SF Pro',
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 39,
-                top: 445,
-                child: Container(
-                  width: 359,
-                  height: 49,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  decoration: ShapeDecoration(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                        width: 1,
-                        strokeAlign: BorderSide.strokeAlignCenter,
-                      ),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: double.infinity,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: double.infinity,
-                                height: 1,
-                                decoration: ShapeDecoration(
-                                  shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                      width: 1,
-                                      strokeAlign:
-                                          BorderSide.strokeAlignOutside,
-                                      color: const Color(
-                                        0xFFE6E6E6,
-                                      ) /* Separators-Vibrant */,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 327,
-                                height: 48,
-                                child: Text(
-                                  '+62129392939',
-                                  style: TextStyle(
-                                    color: Colors.black /* Labels-Primary */,
-                                    fontSize: 17,
-                                    fontFamily: 'SF Pro',
-                                    fontWeight: FontWeight.w500,
-                                    height: 1.18,
-                                    letterSpacing: -0.43,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 55,
-                top: 421,
-                child: Container(
-                  width: 63,
-                  height: 18,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 6,
-                  ),
-                  decoration: ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(1000),
-                    ),
-                  ),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 0,
-                        top: 0,
-                        child: Container(
-                          width: 63,
-                          height: 18,
-                          child: Stack(
-                            children: [
-                              Positioned(
-                                left: -26,
-                                top: -26,
-                                child: Opacity(
-                                  opacity: 0.67,
-                                  child: Container(
-                                    width: 115,
-                                    height: 70,
-                                    child: Stack(
-                                      children: [
-                                        Positioned(
-                                          left: -50,
-                                          top: -50,
-                                          child: Container(
-                                            width: 215,
-                                            height: 170,
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                            ),
-                                            child: Stack(
-                                              children: [
-                                                Positioned(
-                                                  left: 76,
-                                                  top: 76,
-                                                  child: Container(
-                                                    width: 63,
-                                                    height: 18,
-                                                    decoration: ShapeDecoration(
-                                                      color: Colors.black,
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                              1000,
-                                                            ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          left: 26,
-                                          top: 28,
-                                          child: Container(
-                                            width: 63,
-                                            height: 18,
-                                            decoration: ShapeDecoration(
-                                              color: Colors.black.withValues(
-                                                alpha: 0.04,
-                                              ),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(1000),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                left: 0,
-                                top: 0,
-                                child: Container(
-                                  width: 63,
-                                  height: 18,
-                                  decoration: ShapeDecoration(
-                                    color: const Color(0xFFF7F7F7),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(296),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                left: 0,
-                                top: 0,
-                                child: Container(
-                                  width: 63,
-                                  height: 18,
-                                  decoration: ShapeDecoration(
-                                    color: Colors.black.withValues(alpha: 0),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(296),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 36,
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              'PHONE',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: const Color(
-                                  0xFF404040,
-                                ) /* Labels---Vibrant---Controls-Primary-√ */,
-                                fontSize: 17,
-                                fontFamily: 'SF Pro',
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 39,
-                top: 565,
-                child: Container(
-                  width: 359,
-                  height: 49,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  decoration: ShapeDecoration(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                        width: 1,
-                        strokeAlign: BorderSide.strokeAlignCenter,
-                      ),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: double.infinity,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: double.infinity,
-                                height: 1,
-                                decoration: ShapeDecoration(
-                                  shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                      width: 1,
-                                      strokeAlign:
-                                          BorderSide.strokeAlignOutside,
-                                      color: const Color(
-                                        0xFFE6E6E6,
-                                      ) /* Separators-Vibrant */,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 327,
-                                height: 48,
-                                child: Text(
-                                  'usrsystem@gmail.com',
-                                  style: TextStyle(
-                                    color: Colors.black /* Labels-Primary */,
-                                    fontSize: 17,
-                                    fontFamily: 'SF Pro',
-                                    fontWeight: FontWeight.w500,
-                                    height: 1.18,
-                                    letterSpacing: -0.43,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 55,
-                top: 541,
-                child: Container(
-                  width: 52,
-                  height: 18,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 6,
-                  ),
-                  decoration: ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(1000),
-                    ),
-                  ),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 0,
-                        top: 0,
-                        child: Container(
-                          width: 52,
-                          height: 18,
-                          child: Stack(
-                            children: [
-                              Positioned(
-                                left: -26,
-                                top: -26,
-                                child: Opacity(
-                                  opacity: 0.67,
-                                  child: Container(
-                                    width: 104,
-                                    height: 70,
-                                    child: Stack(
-                                      children: [
-                                        Positioned(
-                                          left: -50,
-                                          top: -50,
-                                          child: Container(
-                                            width: 204,
-                                            height: 170,
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                            ),
-                                            child: Stack(
-                                              children: [
-                                                Positioned(
-                                                  left: 76,
-                                                  top: 76,
-                                                  child: Container(
-                                                    width: 52,
-                                                    height: 18,
-                                                    decoration: ShapeDecoration(
-                                                      color: Colors.black,
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                              1000,
-                                                            ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          left: 26,
-                                          top: 28,
-                                          child: Container(
-                                            width: 52,
-                                            height: 18,
-                                            decoration: ShapeDecoration(
-                                              color: Colors.black.withValues(
-                                                alpha: 0.04,
-                                              ),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(1000),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                left: 0,
-                                top: 0,
-                                child: Container(
-                                  width: 52,
-                                  height: 18,
-                                  decoration: ShapeDecoration(
-                                    color: const Color(0xFFF7F7F7),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(296),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                left: 0,
-                                top: 0,
-                                child: Container(
-                                  width: 52,
-                                  height: 18,
-                                  decoration: ShapeDecoration(
-                                    color: Colors.black.withValues(alpha: 0),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(296),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 36,
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              'EMAIL',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: const Color(
-                                  0xFF404040,
-                                ) /* Labels---Vibrant---Controls-Primary-√ */,
-                                fontSize: 17,
-                                fontFamily: 'SF Pro',
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 40,
-                top: 683,
-                child: Container(
-                  width: 359,
-                  height: 130,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  decoration: ShapeDecoration(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                        width: 1,
-                        strokeAlign: BorderSide.strokeAlignCenter,
-                      ),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: double.infinity,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: double.infinity,
-                                height: 1,
-                                decoration: ShapeDecoration(
-                                  shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                      width: 1,
-                                      strokeAlign:
-                                          BorderSide.strokeAlignOutside,
-                                      color: const Color(
-                                        0xFFE6E6E6,
-                                      ) /* Separators-Vibrant */,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 327,
-                                height: 129,
-                                child: Text(
-                                  'Alamat Penguna',
-                                  style: TextStyle(
-                                    color: Colors.black /* Labels-Primary */,
-                                    fontSize: 17,
-                                    fontFamily: 'SF Pro',
-                                    fontWeight: FontWeight.w500,
-                                    height: 1.18,
-                                    letterSpacing: -0.43,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 56,
-                top: 659,
-                child: Container(
-                  width: 83,
-                  height: 18,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 6,
-                  ),
-                  decoration: ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(1000),
-                    ),
-                  ),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 0,
-                        top: 0,
-                        child: Container(
-                          width: 83,
-                          height: 18,
-                          child: Stack(
-                            children: [
-                              Positioned(
-                                left: -26,
-                                top: -26,
-                                child: Opacity(
-                                  opacity: 0.67,
-                                  child: Container(
-                                    width: 135,
-                                    height: 70,
-                                    child: Stack(
-                                      children: [
-                                        Positioned(
-                                          left: -50,
-                                          top: -50,
-                                          child: Container(
-                                            width: 235,
-                                            height: 170,
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                            ),
-                                            child: Stack(
-                                              children: [
-                                                Positioned(
-                                                  left: 76,
-                                                  top: 76,
-                                                  child: Container(
-                                                    width: 83,
-                                                    height: 18,
-                                                    decoration: ShapeDecoration(
-                                                      color: Colors.black,
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                              1000,
-                                                            ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          left: 26,
-                                          top: 28,
-                                          child: Container(
-                                            width: 83,
-                                            height: 18,
-                                            decoration: ShapeDecoration(
-                                              color: Colors.black.withValues(
-                                                alpha: 0.04,
-                                              ),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(1000),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                left: 0,
-                                top: 0,
-                                child: Container(
-                                  width: 83,
-                                  height: 18,
-                                  decoration: ShapeDecoration(
-                                    color: const Color(0xFFF7F7F7),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(296),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                left: 0,
-                                top: 0,
-                                child: Container(
-                                  width: 83,
-                                  height: 18,
-                                  decoration: ShapeDecoration(
-                                    color: Colors.black.withValues(alpha: 0),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(296),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 36,
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              'ADDRESS',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: const Color(
-                                  0xFF404040,
-                                ) /* Labels---Vibrant---Controls-Primary-√ */,
-                                fontSize: 17,
-                                fontFamily: 'SF Pro',
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ],
     );
   }
+
+  /* --------------------------------------------------------------------- */
+  /// Bottom navigation bar with three icons
+  /* --------------------------------------------------------------------- */
+  Widget _buildBottomNav(double width) => Container(
+    width: width,
+    padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 36),
+    decoration: const BoxDecoration(
+      color: Color(0xFFDFE3F7),
+      borderRadius: BorderRadius.vertical(top: Radius.circular(70)),
+    ),
+    child: Wrap(
+      alignment: WrapAlignment.center,
+      spacing: 40,
+      children: [
+        _buildBottomIcon(Icons.home, 'HOME'),
+        _buildBottomIcon(Icons.account_circle, 'ACCOUNT'),
+        _buildBottomIcon(Icons.logout, 'LOGOUT'),
+      ],
+    ),
+  );
+
+  Widget _buildBottomIcon(IconData icon, String label) => Column(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      Container(
+        width: 48,
+        height: 48,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(24),
+        ),
+        child: Icon(icon, size: 24, color: Colors.black54),
+      ),
+      const SizedBox(height: 6),
+      Text(
+        label,
+        style: const TextStyle(
+          color: Color(0xFF757575),
+          fontSize: 12,
+          fontFamily: 'Inter',
+          fontWeight: FontWeight.w400,
+        ),
+      ),
+    ],
+  );
 }

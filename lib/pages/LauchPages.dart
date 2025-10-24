@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LaunchPages extends StatelessWidget {
+  static const String route = '/launchpages';
   const LaunchPages({super.key});
 
   @override

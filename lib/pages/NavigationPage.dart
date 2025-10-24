@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
 class NavigationPage extends StatelessWidget {
+  static const String route = '/nvagiationpages';
   const NavigationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Screen width/height for responsive spacing
     final w = MediaQuery.of(context).size.width;
     final h = MediaQuery.of(context).size.height;
 
-    // Width we use for the “main” card area – shrink it on very small phones
     final cardWidth = w < 430 ? w * 0.95 : 430.0;
 
     return Scaffold(

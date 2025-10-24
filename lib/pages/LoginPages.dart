@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
+  static const String route = '/loginpages';
   const LoginPage({super.key});
 
   @override
@@ -202,7 +203,10 @@ class _LoginPageState extends State<LoginPage> {
           controller: controller,
           obscureText: obscure,
           decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 18,
+              horizontal: 16,
+            ),
             border: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(20)),
               borderSide: BorderSide(color: Color(0xFFE6E6E6)),

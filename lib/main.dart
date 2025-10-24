@@ -1,8 +1,18 @@
-import 'package:bookhall/pages/Dashboard.dart';
+import 'package:bookhall/data.dart';
+import 'package:bookhall/pages/AccountPages.dart';
+import 'package:bookhall/pages/BookingDetails.dart';
+import 'package:bookhall/pages/BookingPages.dart';
+import 'package:bookhall/pages/BookingReceipt.dart';
+import 'package:bookhall/pages/ChatSupport.dart';
+import 'package:bookhall/pages/CreateAccount.dart';
+import 'package:bookhall/pages/DashboardPage.dart';
+import 'package:bookhall/pages/FaqPage.dart';
 import 'package:bookhall/pages/LauchPages.dart';
 import 'package:bookhall/pages/LoginPages.dart';
 import 'package:bookhall/pages/NavigationPage.dart';
+import 'package:bookhall/pages/ProfilePage.dart';
 import 'package:bookhall/pages/SettingPages.dart';
+import 'package:bookhall/pages/UploadBuktiPage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,30 +22,28 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      home: LoginPage(),
+      routes: {
+        LoginPage.route: (context) => LoginPage(),
+        LaunchPages.route: (context) => LaunchPages(),
+        AccountPages.route: (context) => AccountPages(),
+        NavigationPage.route: (context) => NavigationPage(),
+        ProfilePage.route: (context) => ProfilePage(),
+        SettingsPages.route: (context) => SettingsPages(),
+        UploadBuktiPage.route: (context) => UploadBuktiPage(),
+        FaqPage.route: (context) => FaqPage(),
+        DashboardPage.route: (context) => DashboardPage(),
+        CreateAccount.route: (context) => CreateAccount(),
+        ChatSupport.route: (context) => ChatSupport(),
+        BookingReceipt.route: (context) => BookingReceipt(),
+        BookingPages.route: (context) => BookingPages(),
+        BookingDetails.route: (context) => BookingDetails()
+      },
       title: 'BOOKHALL',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: NavigationPage()
+      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: blueBase))
     );
   }
 }

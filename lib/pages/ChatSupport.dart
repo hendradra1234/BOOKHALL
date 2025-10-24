@@ -1,695 +1,267 @@
 import 'package:flutter/material.dart';
 
 class ChatSupport extends StatelessWidget {
+  static const String route = '/chatsupport';
+  const ChatSupport({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: 430,
-          height: 932,
-          clipBehavior: Clip.antiAlias,
-          decoration: ShapeDecoration(
-            color: const Color(0xFF2C6EC4),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(40),
-            ),
+    return MaterialApp(
+      title: 'Chat Support',
+      theme: ThemeData(
+        // Use the same fonts that the Figma design used
+        fontFamily: 'Poppins',
+        textTheme: const TextTheme(
+          titleLarge: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
           ),
-          child: Stack(
+          titleMedium: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: Color(0xFF141414),
+          ),
+          bodyLarge: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+            color: Color(0xFF757575),
+          ),
+          bodyMedium: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w700,
+            color: Color(0xFF1E1E1E),
+          ),
+        ),
+      ),
+      home: const ChatSupportScreen(),
+    );
+  }
+}
+
+/// Main screen
+class ChatSupportScreen extends StatelessWidget {
+  const ChatSupportScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // All sizes are relative to the screen width/height
+    final w = MediaQuery.of(context).size.width;
+    final h = MediaQuery.of(context).size.height;
+
+    return Scaffold(
+      backgroundColor: const Color(0xFF2C6EC4), // Blue background
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: w * 0.04),
+          child: Column(
             children: [
-              Positioned(
-                left: 152,
-                top: 60,
-                child: SizedBox(
-                  width: 124,
-                  height: 33,
-                  child: Text(
-                    'BOOKHALL',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: const Color(
-                        0xFFFEBC2F,
-                      ) /* Miscellaneous-Window-Controls-Minimize */,
-                      fontSize: 20,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w600,
-                      height: 1.10,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 103,
-                top: 87,
-                child: SizedBox(
-                  width: 224,
-                  height: 33,
-                  child: Text(
-                    'Chat Support',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color:
-                          Colors
-                              .white /* Miscellaneous-Sidebar-Fill---Selected */,
-                      fontSize: 20,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w600,
-                      height: 1.10,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 38,
-                top: 69,
-                child: Container(width: 19, height: 16, child: Stack()),
-              ),
-              Positioned(
-                left: 0,
-                top: 0,
-                child: Container(
-                  width: 430,
-                  height: 32,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 37,
-                        top: 9,
-                        child: SizedBox(
-                          width: 30,
-                          height: 14,
-                          child: Text(
-                            '16:04',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 13,
-                              fontFamily: 'League Spartan',
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 364,
-                top: 61,
-                child: Container(
-                  width: 30,
-                  height: 30,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: ShapeDecoration(
-                    color: const Color(
-                      0xFFD9D9D9,
-                    ) /* Labels---Vibrant---Controls-Tertiary-√ */,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25.71),
-                    ),
-                  ),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 7.71,
-                        top: 5.14,
-                        child: Container(
-                          width: 14.57,
-                          height: 18.86,
-                          child: Stack(),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 5,
-                top: 821,
-                child: Container(
-                  width: 409,
-                  height: 111,
-                  padding: const EdgeInsets.only(
-                    top: 36,
-                    left: 60,
-                    right: 60,
-                    bottom: 41,
-                  ),
-                  clipBehavior: Clip.antiAlias,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xFFDFE3F7),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(70),
-                        topRight: Radius.circular(70),
-                      ),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    spacing: 43,
-                    children: [
-                      Container(width: 22, height: 27, child: Stack()),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 40.22,
-                top: 840.53,
-                child: Container(
-                  width: 334.64,
-                  height: 91.47,
-                  padding: const EdgeInsets.all(10),
-                  clipBehavior: Clip.antiAlias,
-                  decoration: ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: Wrap(
-                    alignment: WrapAlignment.center,
-                    runAlignment: WrapAlignment.center,
-                    spacing: 10,
-                    runSpacing: 10,
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: double.infinity,
-                          padding: const EdgeInsets.all(8),
-                          decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            spacing: 8,
-                            children: [
-                              Container(
-                                width: 24,
-                                height: 24,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(),
-                                child: Stack(),
-                              ),
-                              Text(
-                                'Home',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: const Color(
-                                    0xFF757575,
-                                  ) /* Text-Default-Secondary */,
-                                  fontSize: 16,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  height: 1,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          height: double.infinity,
-                          padding: const EdgeInsets.all(8),
-                          decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            spacing: 8,
-                            children: [
-                              Container(
-                                width: 24,
-                                height: 24,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(),
-                                child: Stack(),
-                              ),
-                              Text(
-                                'Account',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: const Color(
-                                    0xFF757575,
-                                  ) /* Text-Default-Secondary */,
-                                  fontSize: 16,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  height: 1,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 33,
-                top: 220,
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(minWidth: 320),
-                  child: Container(
-                    width: 364,
-                    padding: const EdgeInsets.all(24),
-                    decoration: ShapeDecoration(
-                      color: Colors.white /* Background-Default-Default */,
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(
-                          width: 1,
-                          color: const Color(
-                            0xFFD9D9D9,
-                          ) /* Border-Default-Default */,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      spacing: 24,
-                      children: [
-                        Container(
-                          width: double.infinity,
-                          decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            spacing: 8,
-                            children: [
-                              SizedBox(
-                                width: 316,
-                                child: Text(
-                                  'Name',
-                                  style: TextStyle(
-                                    color: const Color(
-                                      0xFF1E1E1E,
-                                    ) /* Text-Default-Default */,
-                                    fontSize: 16,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w700,
-                                    height: 1.40,
-                                  ),
-                                ),
-                              ),
-                              ConstrainedBox(
-                                constraints: BoxConstraints(minWidth: 240),
-                                child: Container(
-                                  width: double.infinity,
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 12,
-                                  ),
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: ShapeDecoration(
-                                    color:
-                                        Colors
-                                            .white /* Background-Default-Default */,
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(
-                                        width: 1,
-                                        strokeAlign:
-                                            BorderSide.strokeAlignCenter,
-                                        color: const Color(
-                                          0xFFD9D9D9,
-                                        ) /* Border-Default-Default */,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      SizedBox(
-                                        width: 284,
-                                        child: Text(
-                                          'Name',
-                                          style: TextStyle(
-                                            color: const Color(
-                                              0xFFB3B3B3,
-                                            ) /* Text-Default-Tertiary */,
-                                            fontSize: 16,
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w400,
-                                            height: 1,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: double.infinity,
-                          decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            spacing: 8,
-                            children: [
-                              SizedBox(
-                                width: 316,
-                                child: Text(
-                                  'Phone',
-                                  style: TextStyle(
-                                    color: const Color(
-                                      0xFF1E1E1E,
-                                    ) /* Text-Default-Default */,
-                                    fontSize: 16,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w700,
-                                    height: 1.40,
-                                  ),
-                                ),
-                              ),
-                              ConstrainedBox(
-                                constraints: BoxConstraints(minWidth: 240),
-                                child: Container(
-                                  width: double.infinity,
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 12,
-                                  ),
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: ShapeDecoration(
-                                    color:
-                                        Colors
-                                            .white /* Background-Default-Default */,
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(
-                                        width: 1,
-                                        strokeAlign:
-                                            BorderSide.strokeAlignCenter,
-                                        color: const Color(
-                                          0xFFD9D9D9,
-                                        ) /* Border-Default-Default */,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      SizedBox(
-                                        width: 284,
-                                        child: Text(
-                                          'Phone',
-                                          style: TextStyle(
-                                            color: const Color(
-                                              0xFFB3B3B3,
-                                            ) /* Text-Default-Tertiary */,
-                                            fontSize: 16,
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w400,
-                                            height: 1,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: double.infinity,
-                          decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            spacing: 8,
-                            children: [
-                              SizedBox(
-                                width: 316,
-                                child: Text(
-                                  'Email',
-                                  style: TextStyle(
-                                    color: const Color(
-                                      0xFF1E1E1E,
-                                    ) /* Text-Default-Default */,
-                                    fontSize: 16,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w700,
-                                    height: 1.40,
-                                  ),
-                                ),
-                              ),
-                              ConstrainedBox(
-                                constraints: BoxConstraints(minWidth: 240),
-                                child: Container(
-                                  width: double.infinity,
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 12,
-                                  ),
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: ShapeDecoration(
-                                    color:
-                                        Colors
-                                            .white /* Background-Default-Default */,
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(
-                                        width: 1,
-                                        strokeAlign:
-                                            BorderSide.strokeAlignCenter,
-                                        color: const Color(
-                                          0xFFD9D9D9,
-                                        ) /* Border-Default-Default */,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      SizedBox(
-                                        width: 284,
-                                        child: Text(
-                                          'Email',
-                                          style: TextStyle(
-                                            color: const Color(
-                                              0xFFB3B3B3,
-                                            ) /* Text-Default-Tertiary */,
-                                            fontSize: 16,
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w400,
-                                            height: 1,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: double.infinity,
-                          decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            spacing: 8,
-                            children: [
-                              SizedBox(
-                                width: 316,
-                                child: Text(
-                                  'Message',
-                                  style: TextStyle(
-                                    color: const Color(
-                                      0xFF1E1E1E,
-                                    ) /* Text-Default-Default */,
-                                    fontSize: 16,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w700,
-                                    height: 1.40,
-                                  ),
-                                ),
-                              ),
-                              ConstrainedBox(
-                                constraints: BoxConstraints(
-                                  minWidth: 240,
-                                  minHeight: 80,
-                                ),
-                                child: Container(
-                                  width: double.infinity,
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 12,
-                                  ),
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: ShapeDecoration(
-                                    color:
-                                        Colors
-                                            .white /* Background-Default-Default */,
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(
-                                        width: 1,
-                                        strokeAlign:
-                                            BorderSide.strokeAlignCenter,
-                                        color: const Color(
-                                          0xFFD9D9D9,
-                                        ) /* Border-Default-Default */,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                  ),
-                                  child: Stack(
-                                    children: [
-                                      SizedBox(
-                                        width: 284,
-                                        child: Text(
-                                          'Message',
-                                          style: TextStyle(
-                                            color: const Color(
-                                              0xFFB3B3B3,
-                                            ) /* Text-Default-Tertiary */,
-                                            fontSize: 16,
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w400,
-                                            height: 1.40,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: double.infinity,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            spacing: 16,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  padding: const EdgeInsets.all(12),
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: ShapeDecoration(
-                                    color: const Color(
-                                      0xFF2C2C2C,
-                                    ) /* Background-Brand-Default */,
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(
-                                        width: 1,
-                                        color: const Color(
-                                          0xFF2C2C2C,
-                                        ) /* Border-Brand-Default */,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    spacing: 8,
-                                    children: [
-                                      Text(
-                                        'Submit',
-                                        style: TextStyle(
-                                          color: const Color(
-                                            0xFFF5F5F5,
-                                          ) /* Text-Brand-On-Brand */,
-                                          fontSize: 16,
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w400,
-                                          height: 1,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 102,
-                top: 153,
-                child: SizedBox(
-                  width: 224,
-                  height: 33,
-                  child: Text(
-                    'Chat Support',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: const Color(
-                        0xFF141414,
-                      ) /* Miscellaneous-Keyboards-Keys */,
-                      fontSize: 20,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w600,
-                      height: 1.10,
-                    ),
-                  ),
-                ),
-              ),
+              _Header(),
+              SizedBox(height: h * 0.02),
+              _FormCard(),
+              SizedBox(height: h * 0.04),
+              _BottomNav(),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// The top bar (time + close button + title)
+class _Header extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        // Time stamp
+        Positioned(
+          left: 0,
+          top: 0,
+          child: const Text(
+            '16:04',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 13,
+              fontFamily: 'League Spartan',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+        // Close (or min) icon – placeholder
+        Positioned(
+          right: 0,
+          top: 0,
+          child: Icon(Icons.close, color: Colors.white, size: 24),
+        ),
+        // Title centred
+        Center(
+          child: const Text(
+            'Chat Support',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFF141414),
+            ),
+          ),
+        ),
       ],
+    );
+  }
+}
+
+/// The white card that contains all the form fields
+class _FormCard extends StatelessWidget {
+  const _FormCard();
+
+  @override
+  Widget build(BuildContext context) {
+    final w = MediaQuery.of(context).size.width;
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: const Color(0xFFD9D9D9)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _TextField(label: 'Name', hint: 'Name', minHeight: 48),
+          const SizedBox(height: 24),
+          _TextField(label: 'Phone', hint: 'Phone', minHeight: 48),
+          const SizedBox(height: 24),
+          _TextField(label: 'Email', hint: 'Email', minHeight: 48),
+          const SizedBox(height: 24),
+          _TextField(
+            label: 'Message',
+            hint: 'Message',
+            minHeight: 80,
+            maxLines: 4,
+          ),
+          const SizedBox(height: 32),
+          ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF2C2C2C),
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+                side: const BorderSide(color: Color(0xFF2C2C2C)),
+              ),
+            ),
+            child: const Text(
+              'Submit',
+              style: TextStyle(
+                color: Color(0xFFF5F5F5),
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                fontFamily: 'Inter',
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// A reusable helper widget for form fields
+class _TextField extends StatelessWidget {
+  final String label;
+  final String hint;
+  final double minHeight;
+  final int? maxLines;
+
+  const _TextField({
+    required this.label,
+    required this.hint,
+    required this.minHeight,
+    this.maxLines,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: Theme.of(context).textTheme.bodyMedium),
+        const SizedBox(height: 8),
+        Container(
+          constraints: BoxConstraints(minHeight: minHeight),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: const Color(0xFFD9D9D9)),
+            color: Colors.white,
+          ),
+          child: TextField(
+            maxLines: maxLines,
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 12,
+              ),
+              hintText: hint,
+              hintStyle: Theme.of(context).textTheme.bodyLarge,
+              border: InputBorder.none,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+/// Bottom navigation bar – the same as the Figma bottom bar
+class _BottomNav extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 91,
+      margin: const EdgeInsets.only(bottom: 20),
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+      child: Row(
+        children: [
+          _BottomNavItem(icon: Icons.home, label: 'Home'),
+          const SizedBox(width: 20),
+          _BottomNavItem(icon: Icons.account_circle, label: 'Account'),
+        ],
+      ),
+    );
+  }
+}
+
+class _BottomNavItem extends StatelessWidget {
+  final IconData icon;
+  final String label;
+
+  const _BottomNavItem({required this.icon, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: InkWell(
+        onTap: () {}, // TODO: Add navigation logic
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Replace the placeholder Stack with an Icon
+            Icon(icon, size: 24, color: const Color(0xFF757575)),
+            const SizedBox(height: 8),
+            Text(
+              label,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                color: Color(0xFF757575),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
