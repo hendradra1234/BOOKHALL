@@ -1,4 +1,5 @@
 import 'package:bookhall/data.dart';
+import 'package:bookhall/widget/Navbar/NavbarFull.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPages extends StatefulWidget {
@@ -20,7 +21,6 @@ class _SettingsPagesState extends State<SettingsPages> {
 
   @override
   Widget build(BuildContext context) {
-    // Base colours from the design
 
     return Scaffold(
       backgroundColor: blueBase,
@@ -28,11 +28,9 @@ class _SettingsPagesState extends State<SettingsPages> {
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           children: [
-            /* ─────── Header ─────── */
             const _Header(),
             const SizedBox(height: 32),
 
-            /* ─────── Avatar & Name ─────── */
             Center(
               child: Column(
                 children: [
@@ -53,7 +51,6 @@ class _SettingsPagesState extends State<SettingsPages> {
             ),
             const SizedBox(height: 32),
 
-            /* ─────── Fields ─────── */
             _buildField(
               icon: Icons.person,
               label: 'USERNAME',
@@ -69,12 +66,10 @@ class _SettingsPagesState extends State<SettingsPages> {
             ),
             _buildField(icon: Icons.home, label: 'ADDRESS', value: _address),
             const SizedBox(height: 32),
-
-            /* ─────── Bottom navigation ─────── */
-            _buildBottomNav(),
           ],
         ),
       ),
+      bottomNavigationBar: NavBarFull(),
     );
   }
 
@@ -139,27 +134,6 @@ class _SettingsPagesState extends State<SettingsPages> {
       ),
     );
   }
-
-  Widget _buildBottomNav() {
-    return BottomNavigationBar(
-      backgroundColor: white,
-      selectedItemColor: const Color(0xFF216DDF),
-      unselectedItemColor: const Color(0xFF757575),
-      showUnselectedLabels: true,
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'HOME'),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.account_circle),
-          label: 'ACCOUNT',
-        ),
-        BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'LOGOUT'),
-      ],
-      // Add `onTap` to navigate if needed
-      onTap: (int index) {
-        // TODO: handle navigation
-      },
-    );
-  }
 }
 
 class _Header extends StatelessWidget {
@@ -167,8 +141,7 @@ class _Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double iconSize = 30;
-    const Color blueBase = Color(0xFF2C6EC4);
+
     const Color orangeAccent = Color(0xFFFEBC2F);
 
     return Stack(

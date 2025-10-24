@@ -1,3 +1,6 @@
+import 'package:bookhall/data.dart';
+import 'package:bookhall/utils.dart';
+import 'package:bookhall/widget/Navbar/NavbarFull.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -10,36 +13,26 @@ class BookingPages extends StatefulWidget {
 }
 
 class _BookingPagesState extends State<BookingPages> {
-  // The date that the user has selected.
   DateTime? _selectedDate;
-  // The month that is currently displayed on the calendar.
   DateTime _focusedDay = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
-    // ------------- Responsiveness helpers -------------
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
-
-    // The container that holds the whole “card” (your 430x932 box).
-    // We keep the same size when the screen is large enough; otherwise
-    // we scale it to fit.
-    final double cardWidth = screenWidth < 480 ? screenWidth * 0.9 : 430;
-    final double cardHeight = screenHeight < 932 ? screenHeight * 0.9 : 932;
+    final double cardWidth = responsiveHandler(context);
+    final double cardHeight = responsiveHeightHandler(context);
 
     return Scaffold(
-      backgroundColor: const Color(0xFF2C6EC4), // header background
+      backgroundColor: blueBase, // header background
       body: Center(
         child: Container(
           width: cardWidth,
           height: cardHeight,
           decoration: BoxDecoration(
-            color: const Color(0xFF2C6EC4),
+            color: blueBase,
             borderRadius: BorderRadius.circular(40),
           ),
           child: Column(
             children: [
-              /* ------------- Header ------------- */
               SizedBox(
                 height: 80,
                 child: Stack(
@@ -78,7 +71,6 @@ class _BookingPagesState extends State<BookingPages> {
                 ),
               ),
 
-              /* ------------- Title Card (SOLL MARINA) ------------- */
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,
@@ -87,7 +79,6 @@ class _BookingPagesState extends State<BookingPages> {
                 child: _buildTitleCard('SOLL MARINA'),
               ),
 
-              /* ------------- Calendar ------------- */
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
@@ -167,7 +158,6 @@ class _BookingPagesState extends State<BookingPages> {
                 ),
               ),
 
-              /* ------------- NEXT Button ------------- */
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 40,
@@ -203,24 +193,7 @@ class _BookingPagesState extends State<BookingPages> {
         ),
       ),
 
-      /* ------------- Bottom Navigation (the light‑gray bar) ------------- */
-      bottomNavigationBar: Container(
-        height: 111,
-        decoration: const BoxDecoration(
-          color: Color(0xFFDFE3F7),
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(70),
-            topRight: Radius.circular(70),
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _buildNavItem(Icons.home, 'Home'),
-            _buildNavItem(Icons.account_circle, 'Account'),
-          ],
-        ),
-      ),
+      bottomNavigationBar: NavBarFull()
     );
   }
 
@@ -242,27 +215,6 @@ class _BookingPagesState extends State<BookingPages> {
           fontWeight: FontWeight.w500,
           fontFamily: 'Poppins',
         ),
-      ),
-    );
-  }
-
-  /* ---------- Helper: Bottom Navigation Item ---------- */
-  Widget _buildNavItem(IconData icon, String label) {
-    return Expanded(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, color: const Color(0xFF757575)),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: const TextStyle(
-              color: Color(0xFF757575),
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-        ],
       ),
     );
   }

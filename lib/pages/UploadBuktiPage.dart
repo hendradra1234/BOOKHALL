@@ -1,4 +1,5 @@
 import 'package:bookhall/data.dart';
+import 'package:bookhall/widget/Navbar/NavbarFull.dart';
 import 'package:flutter/material.dart';
 
 class UploadBuktiPage extends StatefulWidget {
@@ -17,12 +18,6 @@ class _UploadBuktiPageState extends State<UploadBuktiPage> {
 
   @override
   Widget build(BuildContext context) {
-    const Color blueBase = Color(0xFF2C6EC4);
-    const Color blueLight = Color(0xFF216DDF);
-    const Color orangeAccent = Color(0xFFFEBC2F);
-    const Color greySoft = Color(0xFFF7F7F7);
-    const Color greySep = Color(0xFFE6E6E6);
-
     return Scaffold(
       backgroundColor: blueBase,
       body: SafeArea(
@@ -31,56 +26,31 @@ class _UploadBuktiPageState extends State<UploadBuktiPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              /* ───── Header ───── */
               _buildHeader(),
 
-              /* ───── Form Fields ───── */
               const SizedBox(height: 24),
               _buildReadOnlyField('TANGGAL PEMESANAN', _date),
               _buildReadOnlyField('Nama', _name),
               _buildReadOnlyField('Mobile Number', _phone),
               _buildUploadField(),
 
-              /* ───── Submit button ───── */
               const SizedBox(height: 32),
               _buildPESANButton(),
 
-              /* ───── Terms & Login link ───── */
               const SizedBox(height: 24),
               _buildTermsText(),
               const SizedBox(height: 12),
               _buildLoginLink(),
-
-              /* ───── Bottom navigation bar ───── */
-              const SizedBox(height: 48),
-              _buildBottomNav(),
             ],
           ),
         ),
       ),
+      bottomNavigationBar: NavBarFull(),
     );
   }
 
-  /* ------------------------------------------------------------------ */
-  /// Header – “BOOKING” title + status bar
-  /* ------------------------------------------------------------------ */
   Widget _buildHeader() => Stack(
     children: [
-      // Status bar time
-      Positioned(
-        left: 37,
-        top: 9,
-        child: const Text(
-          '16:04',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 13,
-            fontFamily: 'League Spartan',
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ),
-      // Page title
       Center(
         child: const Text(
           'BOOKING',
@@ -96,9 +66,6 @@ class _UploadBuktiPageState extends State<UploadBuktiPage> {
     ],
   );
 
-  /* ------------------------------------------------------------------ */
-  /// A read‑only field – used for date / name / phone
-  /* ------------------------------------------------------------------ */
   Widget _buildReadOnlyField(String label, String value) => Container(
     width: double.infinity,
     height: 41,
@@ -230,9 +197,6 @@ class _UploadBuktiPageState extends State<UploadBuktiPage> {
     textAlign: TextAlign.center,
   );
 
-  /* ------------------------------------------------------------------ */
-  /// Login link for users who already have an account
-  /* ------------------------------------------------------------------ */
   Widget _buildLoginLink() => Text.rich(
     TextSpan(
       children: [
@@ -259,24 +223,5 @@ class _UploadBuktiPageState extends State<UploadBuktiPage> {
       ],
     ),
     textAlign: TextAlign.center,
-  );
-
-  /* ------------------------------------------------------------------ */
-  /// Bottom navigation bar – home & account icons
-  /* ------------------------------------------------------------------ */
-  Widget _buildBottomNav() => BottomNavigationBar(
-    backgroundColor: const Color(0xFFDFE3F7),
-    selectedItemColor: const Color(0xFF216DDF),
-    unselectedItemColor: const Color(0xFF757575),
-    showUnselectedLabels: true,
-    items: const [
-      BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.account_circle),
-        label: 'Account',
-      ),
-    ],
-    // TODO: handle navigation
-    onTap: (int index) {},
   );
 }

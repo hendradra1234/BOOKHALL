@@ -1,3 +1,7 @@
+import 'package:bookhall/data.dart';
+import 'package:bookhall/pages/BookingPages.dart';
+import 'package:bookhall/pages/LauchPages.dart';
+import 'package:bookhall/utils.dart';
 import 'package:flutter/material.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -6,19 +10,32 @@ class DashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double screenW = MediaQuery.of(context).size.width;
-    final double cardWidth = screenW < 430 ? screenW * 0.95 : 430.0;
+    final maxWidth = responsiveHandler(context);
+
+    void _jadwalOnClick() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => BookingPages()),
+      );
+    }
+
+    void _bookingOnClick() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => LaunchPages()),
+      );
+    }
 
     return Scaffold(
-      backgroundColor: const Color(0xFF2C6EC4),
+      backgroundColor: blueBase,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           child: Center(
             child: Container(
-              width: cardWidth,
+              width: maxWidth,
               decoration: BoxDecoration(
-                color: const Color(0xFF2C6EC4),
+                color: greySep,
                 borderRadius: BorderRadius.circular(40),
               ),
               child: Padding(
@@ -26,19 +43,9 @@ class DashboardPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    /* ───── Top bar ───── */
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          '16:04',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 13,
-                            fontFamily: 'League Spartan',
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
                         const Text(
                           'BOOKHALL',
                           style: TextStyle(
@@ -54,14 +61,6 @@ class DashboardPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 32),
 
-                    /* ───── Booking card (two side‑by‑side icons) ───── */
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [_buildBookingIcon(), _buildBookingIcon()],
-                    ),
-                    const SizedBox(height: 32),
-
-                    /* ───── Progress bar ───── */
                     const Text(
                       '30% booking for Today.',
                       style: TextStyle(
@@ -85,7 +84,7 @@ class DashboardPage extends StatelessWidget {
                         // Progress bar
                         Container(
                           height: 27,
-                          width: 0.30 * cardWidth, // 30 % of the card width
+                          width: 0.30 * maxWidth, // 30 % of the card width
                           decoration: BoxDecoration(
                             color: const Color(0xFFF1FFF3),
                             borderRadius: BorderRadius.circular(13.5),
@@ -108,8 +107,6 @@ class DashboardPage extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 32),
-
-                    /* ───── Stats ───── */
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -129,37 +126,14 @@ class DashboardPage extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 32),
-
-                    /* ───── Bottom buttons ───── */
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _navButton('Cek Jadwal'),
-                        _navButton('Booking'),
+                        _buildBookingIcon('Cek Jadwal', _jadwalOnClick),
+                        _buildBookingIcon('Booking', _bookingOnClick),
                       ],
                     ),
                     const SizedBox(height: 24),
-
-                    /* ───── Bottom navigation bar (placeholder) ───── */
-                    BottomNavigationBar(
-                      backgroundColor: const Color(0xFFDFE3F7),
-                      selectedItemColor: const Color(0xFF216DDF),
-                      unselectedItemColor: const Color(0xFF757575),
-                      showUnselectedLabels: true,
-                      items: const [
-                        BottomNavigationBarItem(
-                          icon: Icon(Icons.calendar_today),
-                          label: 'Cek Jadwal',
-                        ),
-                        BottomNavigationBarItem(
-                          icon: Icon(Icons.book),
-                          label: 'Booking',
-                        ),
-                      ],
-                      onTap: (int index) {
-                        // TODO: handle navigation
-                      },
-                    ),
                   ],
                 ),
               ),
@@ -170,33 +144,28 @@ class DashboardPage extends StatelessWidget {
     );
   }
 
-  /* --------------------------------------------------------------------
-   *  Helpers – replace the duplicated positioned widgets with reusable
-   *  widgets that look identical but are easier to maintain.
-   * -------------------------------------------------------------------- */
-
-  /// Small circular icon that represents a booking item
-  Widget _buildBookingIcon() => Card(
-    color: const Color(0xFF6CB5FD),
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(26)),
-    child: Padding(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: const [
-          Icon(Icons.event, size: 48, color: Colors.white),
-          SizedBox(height: 12),
-          Text(
-            'BOOKING',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w600,
+  Widget _buildBookingIcon(label, onClick) => GestureDetector(
+    onTap: onClick,
+    child: Column(
+      children: [
+        Card(
+          color: const Color(0xFF6CB5FD),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(26),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                Icon(Icons.event, size: 48, color: Colors.white),
+                SizedBox(height: 12),
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+        Text(label),
+      ],
     ),
   );
 
@@ -231,25 +200,4 @@ class DashboardPage extends StatelessWidget {
       ],
     );
   }
-
-  /// Bottom navigation button
-  Widget _navButton(String text) => ElevatedButton(
-    style: ElevatedButton.styleFrom(
-      backgroundColor: const Color(0xFF2C6EC4),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-    ),
-    onPressed: () {},
-    child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-      child: Text(
-        text,
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 15,
-          fontFamily: 'Poppins',
-          fontWeight: FontWeight.w500,
-        ),
-      ),
-    ),
-  );
 }

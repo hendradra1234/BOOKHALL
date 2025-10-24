@@ -11,3 +11,5 @@ final Color greySep = Color(0xFFE6E6E6);
 const Color cardBg = Color(0xFFDFE3F7);
 const Color textDark = Color(0xFF141414);
 const Color textLight = Color(0xFF4B4544);
+const Color grayNavbar = Color(0xFF757575);
+const Color navbarColor = Color(0xFFDFE3F7);

@@ -1,3 +1,4 @@
+import 'package:bookhall/widget/Navbar/NavbarSingle.dart';
 import 'package:flutter/material.dart';
 import '../data.dart';
 
@@ -74,32 +75,11 @@ class FaqPage extends StatelessWidget {
               ),
 
               const SizedBox(height: 40),
-              BottomNavigationBar(
-                backgroundColor: cardBg,
-                selectedItemColor: blueBase,
-                unselectedItemColor: const Color(0xFF757575),
-                showUnselectedLabels: true,
-                items: const [
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.home),
-                    label: 'Home',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.question_answer),
-                    label: 'FAQ',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.account_circle),
-                    label: 'Account',
-                  ),
-                ],
-                // TODO: add navigation logic
-                onTap: (int index) {},
-              ),
             ],
           ),
         ),
       ),
+      bottomNavigationBar: NavBarFull(),
     );
   }
 

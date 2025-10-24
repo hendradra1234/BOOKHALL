@@ -1,10 +1,11 @@
+import 'package:bookhall/data.dart';
 import 'package:flutter/material.dart';
 
 class BookingItem {
   final String title;
   final String subtitle;
-  final String status; // e.g. 'Sudah di Booking', 'Kosong'
-  final bool isBooked; // true = booked (red), false = free (green)
+  final String status;
+  final bool isBooked;
 
   BookingItem({
     required this.title,
@@ -31,15 +32,13 @@ class BookingDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Use the device size to scale the header height (≈ 20% of the screen)
     final headerHeight = MediaQuery.of(context).size.height * 0.18;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF2C6EC4),
+      backgroundColor: blueBase,
       body: SafeArea(
         child: Column(
           children: [
-            // ───── HEADER ─────
             Container(
               height: headerHeight,
               width: double.infinity,
@@ -53,24 +52,6 @@ class BookingDetails extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Time + Close button
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        '16:04',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.close, color: Colors.white),
-                        onPressed: () => Navigator.of(context).pop(),
-                      ),
-                    ],
-                  ),
                   const SizedBox(height: 10),
                   // Title
                   const Text(
@@ -94,7 +75,6 @@ class BookingDetails extends StatelessWidget {
               ),
             ),
 
-            // ───── LIST OF BOOKINGS ─────
             Expanded(
               child: ListView.builder(
                 padding: const EdgeInsets.symmetric(
@@ -109,7 +89,6 @@ class BookingDetails extends StatelessWidget {
               ),
             ),
 
-            // ───── ACTION BAR ─────
             Container(
               color: const Color(0xFFDFE3F7),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
@@ -142,7 +121,6 @@ class BookingDetails extends StatelessWidget {
   }
 }
 
-/// Re‑usable card that mirrors the original “booking detail” rows
 class _BookingCard extends StatelessWidget {
   final BookingItem item;
 

@@ -1,3 +1,6 @@
+import 'package:bookhall/data.dart';
+import 'package:bookhall/utils.dart';
+import 'package:bookhall/widget/Navbar/NavbarFull.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -6,11 +9,10 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenW = MediaQuery.of(context).size.width;
-    final cardWidth = screenW < 430 ? screenW * 0.95 : 430.0;
+    final cardWidth = responsiveHandler(context);
 
     return Scaffold(
-      backgroundColor: const Color(0xFF2C6EC4),
+      backgroundColor: blueBase,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -24,14 +26,12 @@ class ProfilePage extends StatelessWidget {
 
                 const SizedBox(height: 40),
                 _buildInfoCard(cardWidth),
-
-                const SizedBox(height: 40),
-                _buildBottomNav(cardWidth),
               ],
             ),
           ),
         ),
       ),
+      bottomNavigationBar: NavBarFull(),
     );
   }
 
@@ -40,17 +40,6 @@ class ProfilePage extends StatelessWidget {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        // Clock (mocked)
-        const Text(
-          '16:04',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 13,
-            fontFamily: 'League Spartan',
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        // Title
         const Text(
           'BOOKHALL',
           style: TextStyle(
@@ -134,9 +123,6 @@ class ProfilePage extends StatelessWidget {
     ),
   );
 
-  /* --------------------------------------------------------------------- */
-  /// One read‑only text field with a label on top
-  /* --------------------------------------------------------------------- */
   Widget _buildField({
     required String label,
     required String value,

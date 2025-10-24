@@ -1,3 +1,6 @@
+import 'package:bookhall/data.dart';
+import 'package:bookhall/pages/NavigationPage.dart';
+import 'package:bookhall/utils.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -9,11 +12,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // Controllers to read the input values.
   final _usernameCtrl = TextEditingController();
   final _passwordCtrl = TextEditingController();
 
-  // GlobalKey to validate the form.
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -25,41 +26,23 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Get screen size for responsive layout
-    final size = MediaQuery.of(context).size.width;
-    final maxWidth = size < 430 ? size * 0.95 : 430.0; // shrink on small phones
+    final maxWidth = responsiveHandler(context);
 
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: blueBase,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
-            // The whole page scrolls if it doesn't fit.
             child: Container(
               width: maxWidth,
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                color: const Color(0xFF2C6EC4),
+                color: Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(40),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  /*  16:04  (mocked as a small status bar) */
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    child: Text(
-                      '16:04',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 13,
-                        fontFamily: 'League Spartan',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-
-                  /*  BOOKHALL title  */
                   Text(
                     'BOOKHALL',
                     style: const TextStyle(
@@ -73,8 +56,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
 
                   const SizedBox(height: 8),
-
-                  /*  SIGN IN subtitle  */
                   const Text(
                     'SIGN IN',
                     style: TextStyle(
@@ -87,8 +68,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
 
                   const SizedBox(height: 48),
-
-                  /*  Username field  */
                   _buildTextField(
                     label: 'Username',
                     controller: _usernameCtrl,
@@ -96,8 +75,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
 
                   const SizedBox(height: 20),
-
-                  /*  Password field  */
                   _buildTextField(
                     label: 'Password',
                     controller: _passwordCtrl,
@@ -105,8 +82,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
 
                   const SizedBox(height: 48),
-
-                  /*  LOGIN button  */
                   SizedBox(
                     width: double.infinity,
                     height: 54,
@@ -231,10 +206,14 @@ class _LoginPageState extends State<LoginPage> {
   /// Dummy login handler – replace with real logic
   void _handleLogin() {
     if (_formKey.currentState?.validate() ?? true) {
-      // In a real app, perform authentication here.
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(const SnackBar(content: Text('Login pressed')));
+      ).showSnackBar(const SnackBar(content: Text('Login Success')));
+      Navigator.pop(context);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => NavigationPage()),
+      );
     }
   }
 }

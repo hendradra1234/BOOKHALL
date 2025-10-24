@@ -1,26 +1,15 @@
+import 'package:bookhall/data.dart';
+import 'package:bookhall/pages/ChatSupport.dart';
+import 'package:bookhall/pages/FaqPage.dart';
+import 'package:bookhall/pages/LoginPages.dart';
+import 'package:bookhall/pages/ProfilePage.dart';
+import 'package:bookhall/pages/SettingPages.dart';
+import 'package:bookhall/widget/Navbar/NavbarSingle.dart';
 import 'package:flutter/material.dart';
 
 class AccountPages extends StatelessWidget {
   static const String route = '/accountPages';
   const AccountPages({super.key});
-
-  Widget _bottomNavItem({
-    required IconData icon,
-    required String label,
-    required VoidCallback onTap,
-  }) {
-    return InkWell(
-      onTap: onTap,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, color: Colors.grey),
-          const SizedBox(height: 4),
-          Text(label, style: const TextStyle(color: Colors.grey)),
-        ],
-      ),
-    );
-  }
 
   Widget _buildTile({
     required IconData icon,
@@ -28,7 +17,7 @@ class AccountPages extends StatelessWidget {
     required VoidCallback onTap,
   }) {
     return ListTile(
-      leading: Icon(icon, color: const Color(0xFF2C6EC4)),
+      leading: Icon(icon, color: blueBase),
       title: Text(
         title,
         style: const TextStyle(
@@ -44,36 +33,23 @@ class AccountPages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF2C6EC4),
+      backgroundColor: white,
       body: SafeArea(
         child: Column(
           children: [
-            // --- Top bar with time and a placeholder icon
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
                 children: [
-                  const Text(
-                    '16:04',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 13,
-                      fontFamily: 'League Spartan',
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
                   const Spacer(),
-                  // Add any system/control icons here
                   Icon(Icons.menu, color: Colors.white, size: 24),
                 ],
               ),
             ),
             const SizedBox(height: 20),
 
-            // --- Profile avatar & name
             Center(
               child: Column(
                 children: [
@@ -112,7 +88,11 @@ class AccountPages extends StatelessWidget {
                     icon: Icons.person,
                     title: 'Profile Saya',
                     onTap: () {
-                      // TODO: navigate to profile page
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ProfilePage()),
+                      );
                     },
                   ),
                   const Divider(),
@@ -120,7 +100,11 @@ class AccountPages extends StatelessWidget {
                     icon: Icons.settings,
                     title: 'Pengaturan',
                     onTap: () {
-                      // TODO: navigate to settings page
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SettingsPages()),
+                      );
                     },
                   ),
                   const Divider(),
@@ -128,7 +112,11 @@ class AccountPages extends StatelessWidget {
                     icon: Icons.support_agent,
                     title: 'Chat Support',
                     onTap: () {
-                      // TODO: navigate to chat
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ChatSupport()),
+                      );
                     },
                   ),
                   const Divider(),
@@ -136,7 +124,11 @@ class AccountPages extends StatelessWidget {
                     icon: Icons.question_answer,
                     title: 'FAQs',
                     onTap: () {
-                      // TODO: navigate to FAQs
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => FaqPage()),
+                      );
                     },
                   ),
                   const Divider(),
@@ -144,40 +136,19 @@ class AccountPages extends StatelessWidget {
                     icon: Icons.logout,
                     title: 'Log Out',
                     onTap: () {
-                      // TODO: show logout dialog
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                      );
                     },
                   ),
                 ],
               ),
             ),
-
-            // --- Bottom navigation
-            Container(
-              color: const Color(0xFFDFE3F7),
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _bottomNavItem(
-                    icon: Icons.home,
-                    label: 'Home',
-                    onTap: () {
-                      // TODO: navigate to home
-                    },
-                  ),
-                  _bottomNavItem(
-                    icon: Icons.account_circle,
-                    label: 'Account',
-                    onTap: () {
-                      // TODO: navigate to account (this page)
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+        ])
       ),
+      bottomNavigationBar: NavBarFull(),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:bookhall/pages/LoginPages.dart';
 import 'package:flutter/material.dart';
 
 class CreateAccount extends StatefulWidget {
@@ -312,7 +313,13 @@ class _CreateAccountState extends State<CreateAccount> {
                       Center(
                         child: GestureDetector(
                           onTap: () {
-                            // TODO: navigate to login page
+                            Navigator.pop(context);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginPage(),
+                              ),
+                            );
                           },
                           child: Text.rich(
                             TextSpan(

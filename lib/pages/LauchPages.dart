@@ -1,3 +1,6 @@
+import 'package:bookhall/pages/CreateAccount.dart';
+import 'package:bookhall/pages/LoginPages.dart';
+import 'package:bookhall/utils.dart';
 import 'package:flutter/material.dart';
 
 class LaunchPages extends StatelessWidget {
@@ -6,14 +9,12 @@ class LaunchPages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-
-    final cardWidth = screenWidth < 500 ? screenWidth * 0.9 : 430.0;
+    final maxWidth = responsiveHandler(context);
 
     return Center(
       child: Container(
-        width: cardWidth,
-        height: cardWidth * 2.17, // 932 / 430 ≈ 2.17
+        width: maxWidth,
+        height: maxWidth * 2.17, // 932 / 430 ≈ 2.17
         decoration: ShapeDecoration(
           color: const Color(0xC4D6E7FF),
           shape: RoundedRectangleBorder(
@@ -51,8 +52,6 @@ class LaunchPages extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 48),
-
-              // “Log In” button – full‑width, rounded, solid
               SizedBox(
                 width: double.infinity,
                 height: 45,
@@ -70,14 +69,16 @@ class LaunchPages extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    // TODO: Navigate to login screen
+                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                    );
                   },
                   child: const Text('Log In'),
                 ),
               ),
               const SizedBox(height: 16),
-
-              // “Sign Up” button – subtle background, outline
               SizedBox(
                 width: double.infinity,
                 height: 45,
@@ -96,7 +97,11 @@ class LaunchPages extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    // TODO: Navigate to sign‑up screen
+                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CreateAccount()),
+                    );
                   },
                   child: const Text('Sign Up'),
                 ),
