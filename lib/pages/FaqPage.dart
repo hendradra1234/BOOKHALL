@@ -1,4 +1,4 @@
-import 'package:bookhall/widget/Navbar/NavbarSingle.dart';
+import 'package:bookhall/widget/Navbar/NavbarFull.dart';
 import 'package:flutter/material.dart';
 import '../data.dart';
 

@@ -1,6 +1,7 @@
 import 'package:bookhall/data.dart';
 import 'package:bookhall/pages/BookingDetails.dart';
 import 'package:bookhall/pages/BookingPages.dart';
+import 'package:bookhall/pages/BookingReceipt.dart';
 import 'package:bookhall/utils.dart';
 import 'package:bookhall/widget/Button/NavBigButton.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +72,7 @@ class NavigationPage extends StatelessWidget {
                           Navigator.pop(context);
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => BookingDetails()),
+                            MaterialPageRoute(builder: (context) => BookingReceipt()),
                           );
                         },
                       ),

@@ -3,8 +3,8 @@ import 'package:bookhall/pages/DashboardPage.dart';
 import 'package:bookhall/widget/Button/NavItem.dart';
 import 'package:flutter/material.dart';
 
-class NavBarFull extends StatelessWidget {
-  const NavBarFull({super.key});
+class NavBarsingle extends StatelessWidget {
+  const NavBarsingle({super.key});
 
   @override
   Widget build(BuildContext context) {

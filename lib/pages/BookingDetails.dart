@@ -1,4 +1,5 @@
 import 'package:bookhall/data.dart';
+import 'package:bookhall/widget/Navbar/NavbarFull.dart';
 import 'package:flutter/material.dart';
 
 class BookingItem {
@@ -88,35 +89,10 @@ class BookingDetails extends StatelessWidget {
                 },
               ),
             ),
-
-            Container(
-              color: const Color(0xFFDFE3F7),
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0088FF),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 32,
-                    vertical: 12,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                ),
-                onPressed: () {},
-                child: const Text(
-                  'Action',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ),
-            ),
           ],
         ),
       ),
+      bottomNavigationBar: NavBarFull(),
     );
   }
 }

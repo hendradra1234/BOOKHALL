@@ -4,7 +4,7 @@ import 'package:bookhall/pages/FaqPage.dart';
 import 'package:bookhall/pages/LoginPages.dart';
 import 'package:bookhall/pages/ProfilePage.dart';
 import 'package:bookhall/pages/SettingPages.dart';
-import 'package:bookhall/widget/Navbar/NavbarSingle.dart';
+import 'package:bookhall/widget/Navbar/NavbarFull.dart';
 import 'package:flutter/material.dart';
 
 class AccountPages extends StatelessWidget {

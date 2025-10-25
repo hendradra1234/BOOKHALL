@@ -1,4 +1,7 @@
 import 'package:bookhall/data.dart';
+import 'package:bookhall/pages/BookingPages.dart';
+import 'package:bookhall/pages/NavigationPage.dart';
+import 'package:bookhall/widget/Navbar/NavbarFull.dart';
 import 'package:flutter/material.dart';
 
 class BookingReceipt extends StatelessWidget {
@@ -130,7 +133,7 @@ class BookingReceipt extends StatelessWidget {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        // TODO: add navigation logic
+                        Navigator.pushNamed(context, NavigationPage.route);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF216DDF),
@@ -155,31 +158,13 @@ class BookingReceipt extends StatelessWidget {
                   ),
 
                   const SizedBox(height: 30),
-
-                  // ---------- BOTTOM NAVIGATION ----------
-                  Container(
-                    height: 70,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFDFE3F7),
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(70),
-                        topRight: Radius.circular(70),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: const [
-                        _NavItem(icon: Icons.home, label: 'Home'),
-                        _NavItem(icon: Icons.account_circle, label: 'Account'),
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),
           ),
         ),
       ),
+      bottomNavigationBar: NavBarFull(),
     );
   }
 }
